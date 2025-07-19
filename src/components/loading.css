@@ -1,0 +1,21 @@
+[data-loader="logo-circle"] {
+  width: 155px;
+  height: 155px;
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid #e52d27;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
