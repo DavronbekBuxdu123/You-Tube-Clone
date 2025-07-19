@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ApiService } from "../api";
 import VideoCard from "./VideoCard";
+import LoadingIcon from "./Loading";
 
 export default function Search() {
   const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   console.log(id);
@@ -13,7 +15,7 @@ export default function Search() {
       try {
         const res = await ApiService.fetching(`search?part=snippet&q=${id}`);
         setVideos(res.data.items);
-        console.log(videos);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -25,7 +27,7 @@ export default function Search() {
       <p className="text-xl lg:text-3xl font-bold px-[30px]">
         Search results for <span className="text-red-500">{id}</span> videos
       </p>
-      <VideoCard videos={videos} />
+      {loading ? <LoadingIcon /> : <VideoCard videos={videos} />}
     </div>
   );
 }
